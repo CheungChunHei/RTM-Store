@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: #555;
+}
+p{
+    color: #555;
+}
+.header{
+    background: radial-gradient(#fff,#fff);
+}
+
+.container{
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul{
+    display: inline-block;
+    list-style-type: none;
+}
+nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+.menu-icon{
+    display: none;
+    width: 28px;
+    margin-left: 20px;
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.small-container{
+    max-width: 2160px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.page-btn{
+    margin: 0 auto 80px;
+}
+
+.page-btn span{
+    display: inline-block;
+    border: 1px solid #ff523b;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.page-btn span:hover{
+    background: #ff523b;
+    color: #fff;
+}
+
+.row-2{
+    justify-content: space-between;
+    margin: 100px auto 50px;
+}
+
+
+/*--------product--------*/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    }
+    
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    }
+    
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    }
+    
+.product-img {
+    max-width: 150px;
+    }
+
+/*---------footer-------*/
+
+.footer{
+    background: #b6b6b6;
+    color: #000;
+    font-size: 18px;
+    padding: 20px 0 100px;
+}
+.footer p{
+    color: #000;
+}
+.footer h3{
+    color: #000;
+    margin-bottom: 20px;
+}
+.footer-1,.footer-2{
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer li{
+    display: block;
+}

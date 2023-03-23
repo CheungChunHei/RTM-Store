@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+           <div class="navbar">
+               <div class="logo">
+                   <a href={{ url_for('index') }}><img src="https://mtrproject.blob.core.windows.net/$web/MTR_Logo.png" width="125px"></a>
+               </div>
+               <nav>
+                <ul id="MenuItems">
+                    <li><a href={{ url_for('index') }}>Home</a></li>
+                    <li><a href={{ url_for('products') }}>Products</a></li>
+                    <li><a href={{ url_for('account') }}>Account</a></li>
+                    <li><a href={{ url_for('contact') }}>Contact</a></li>
+                    <li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+                </ul>
+               </nav>
+ 
+               <img src="https://mtrproject.blob.core.windows.net/$web/menu.png" onclick="menutoggle()" class="menu-icon"   >
+           </div>
+ <!--------------Cart Items details--------------->
+<div class="small-container cart-page">
+   
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart_item in cart_items %}
+            <tr>                
+                <td>{{ cart_item[1] }}</td>                
+                <td>$ {{ cart_item[2] }}</td>
+                <td>
+                    <form action="{{ url_for('update_cart') }}" method="post">
+                        <input type="hidden" name="cart_id" value="{{ cart_item[0] }}">
+                        <input type="number" name="quantity" value="{{ cart_item[3] }}" min="1">
+                        <button type="submit">Update</button>
+                    </form>
+                </td>
+                <td>{{ cart_item[4] }}</td>
+                <td>
+                    <form action="{{ url_for('update_cart') }}" method="post">
+                        <input type="hidden" name="cart_id" value="{{ cart_item[0] }}">
+                        <input type="hidden" name="quantity" value="0">
+                        <button type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>          
+    </table>
+     
+     <div class="total-price">
+         <table>
+            <tr>
+                <td colspan="3">Total:</td>
+                <td>$ {{ total_price }}</td>
+                <td></td>
+            </tr>
+         </table>
+     </div>
+     <div class="total-price">
+         <a href="#" class="btn">Proceed to checkout &#8594;</a>
+     </div>
+     
+ </div>
+        
+ <!----------Footer---------------> 
+ 
+ <div class="footer">
+     <div class="container">
+         <div class="row">
+             <div class="footer-1">
+                <h3>Customer Services</h3>
+                 <ul>
+                     <li>FAQs</li>
+                     <li>Delivery Services</li>
+                     <li>About Order and Payment</li>
+                     <li><a href={{ url_for('contact') }}>Contact</a></li>
+                 </ul>
+             </div>
+             <div class="footer-2">
+                <h3>Language</h3>
+                 <ul>
+                     <li><a href={{ url_for('cart') }}>English</a></li>
+                     <li><a href={{ url_for('cart') }}>中文</a></li>
+                     <li>.</li>
+                     <li>.</li>
+                 </ul>
+             </div>
+         </div>
+     </div>  
+ </div>
+ 
+ <!-------------js for toggle menu-------------->
+ 
+ <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+ <script>
+     const swiper = new Swiper('.swiper', {
+         autoplay: {
+             delay: 3000,
+             disableOnInteraction: false,
+         },
+   loop: true,
+ 
+   pagination: {
+     el: '.swiper-pagination',
+     clickable: true,
+ 
+   },
+ 
+   navigation: {
+     nextEl: '.swiper-button-next',
+     prevEl: '.swiper-button-prev',
+   },
+ 
+ });
+ </script>
+
+</body>
+</html>

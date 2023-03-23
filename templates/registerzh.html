@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+        <title>港鐵網上商店</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+       <div class="container">
+          <div class="navbar">
+              <div class="logo">
+                  <a href={{ url_for('indexzh') }}><img src="https://mtrproject.blob.core.windows.net/$web/MTR_Logo.png" width="125px"></a>
+              </div>
+              <nav>
+               <ul id="MenuItems">
+                <li><a href={{ url_for('indexzh') }}>首頁</a></li>
+                <li><a href={{ url_for('productszh') }}>產品</a></li>
+                <li><a href={{ url_for('accountzh') }}>賬戶</a></li>
+                <li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
+                <li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+               </ul>
+              </nav>
+              <img src="https://mtrproject.blob.core.windows.net/$web/menu.png" onclick="menutoggle()" class="menu-icon">
+          </div>
+          
+          
+       </div>
+       
+       
+<!--------------Cart Items details--------------->
+<div class="accout-page">
+    <div class="container">  
+       <div class="row">          
+            <form id="RegForm" method="post">
+                <h1>註冊</h1>
+                <input type="text" name="username" required="required" placeholder="用戶名稱">
+                <input type="email" name="email" required="required" placeholder="電郵">
+                <input type="password" name="password" required="required" placeholder="密碼">
+                <button type="submit" class="btn">註冊</button>
+            </form>
+       </div>
+    </div>
+</div>
+
+<!----------Footer---------------> 
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-1">
+               <h3>客戶服務</h3>
+                <ul>
+                    <li>常見問題</li>
+                    <li>送貨服務</li>
+                    <li>關於訂單及付款</li>
+                    <li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
+                </ul>
+            </div>
+            <div class="footer-2">
+               <h3>Language</h3>
+                <ul>
+                    <li><a href={{ url_for('account') }}>English</a></li>
+                    <li><a href={{ url_for('accountzh') }}>中文</a></li>
+                    <li>.</li>
+                    <li>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>  
+</div>
+<!-------------js for toggle menu-------------->
+
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+    
+    MenuItems.style.maxHeight = "0px";
+    
+    function menutoggle()
+    {
+        if(MenuItems.style.maxHeight == "0px")
+            {
+                MenuItems.style.maxHeight = "200px";
+            }else
+            {
+                MenuItems.style.maxHeight = "0px"
+            } 
+    }
+     
+</script>
+<!------------------- form toggle ----------->
+    <script>
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var Indicator = document.getElementById("indicator");
+        
+        function register(){
+                RegForm.style.transform = "translateX(0px)";
+                LoginForm.style.transform = "translateX(0px)";
+                Indicator.style.transform = "translateX(100px)"
+            };
+        function login(){
+                RegForm.style.transform = "translateX(300px)";
+                LoginForm.style.transform = "translateX(300px)";
+                Indicator.style.transform = "translateX(0px)"
+            };
+            
+    </script>
+    
+    
+    
+</body>
+</html>
+

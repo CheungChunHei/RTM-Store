@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+  </head>
+  <body>
+    <header>
+      <h1>Add Product</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/products">Product</a></li>
+        </ul>
+      </nav>
+    </header>
+    <form method="post" enctype="multipart/form-data">
+      <label for="name">Name:</label>
+      <input type="text" name="name"><br>
+      <label for="namezh">中文名稱:</label>
+      <input type="text" name="namezh"><br>
+      <label for="description">Description:</label>
+      <textarea name="description"></textarea><br>
+      <label for="descriptionzh">描述:</label>
+      <textarea name="descriptionzh"></textarea><br>
+      <label for="price">Price:</label>
+      <input type="number" name="price"><br>
+      <label for="image">Image:</label>
+      <input type="file" name="image"><br>
+      <input type="submit" value="Add">
+    </form>
+  </body>
+</html>

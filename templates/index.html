@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MTR Store</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+</head>
+<body>
+   <div class="header">
+       <div class="container">
+          <div class="navbar">
+              <div class="logo">
+                  <a href={{ url_for('index') }}><img src="https://mtrproject.blob.core.windows.net/$web/MTR_Logo.png" width="125px"></a>
+              </div>
+              <nav>
+               <ul id="MenuItems">
+                   <li><a href={{ url_for('index') }}>Home</a></li>
+                   <li><a href={{ url_for('products') }}>Products</a></li>
+                   <li><a href={{ url_for('account') }}>Account</a></li>
+                   <li><a href={{ url_for('contact') }}>Contact</a></li>
+                   <li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+               </ul>
+              </nav>
+              <img src="https://mtrproject.blob.core.windows.net/$web/menu.png" onclick="menutoggle()" class="menu-icon">
+          </div>
+            <!-- Slider -->
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://mtrproject.blob.core.windows.net/$web/Slider1.png"></div>
+                <div class="swiper-slide"><img src="https://mtrproject.blob.core.windows.net/$web/Slider2.png"></div>
+                <div class="swiper-slide"><img src="https://mtrproject.blob.core.windows.net/$web/Slider3.png"></div>
+                <div class="swiper-slide"><img src="https://mtrproject.blob.core.windows.net/$web/Slider4.png"></div>
+                <div class="swiper-slide"><img src="https://mtrproject.blob.core.windows.net/$web/Slider5.png"></div>
+              </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+       </div>
+    </div>
+<!------------------ New In --------------->
+     <div class="New">
+        <h2 class="title">New In</h2>
+         <div class="small-container">
+           <div class="row">
+               <div class="New-1">
+                   <img src="https://mtrproject.blob.core.windows.net/$web/NewIn1.png">
+               </div> 
+               <div class="New-1">
+                  <img src="https://mtrproject.blob.core.windows.net/$web/NewIn2.png">
+               </div>  
+           </div>
+       </div>
+     </div>
+       
+<!----------Footer---------------> 
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-1">
+               <h3>Customer Services</h3>
+                <ul>
+                    <li>FAQs</li>
+                    <li>Delivery Services</li>
+                    <li>About Order and Payment</li>
+                    <li><a href={{ url_for('contact') }}>Contact us</a></li>
+                </ul>
+            </div>
+            <div class="footer-2">
+               <h3>Language</h3>
+                <ul>
+                    <li><a href={{ url_for('index') }}>English</a></li>
+                    <li><a href={{ url_for('indexzh') }}>中文</a></li>
+                    <li>.</li>
+                    <li>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<!-------------js for toggle menu-------------->
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+  loop: true,
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+});
+</script>
+</body>
+</html>
+
