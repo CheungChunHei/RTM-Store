@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>rtm Store</title>
+    <title>RTM Store</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='product.css') }}">
 </head>
 <body>
@@ -37,7 +37,7 @@
        </select>
    </div>
 
-  <li><a href="{{ url_for('add_product') }}">add_product</a></li>
+  <h3><u><li><a href="{{ url_for('add_product') }}">add_product</a></li></u></h3>
   <table>
     <tbody>
       {% for product in products %}

@@ -1,9 +1,10 @@
-from sqlalchemy import create_engine, Column, Integer, String, select , Float, Text ,ForeignKey, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, select , Float, Text ,ForeignKey, DateTime, types
 from sqlalchemy.orm import declarative_base,relationship, backref
 from sqlalchemy.orm import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from datetime import datetime, time as datetime_time
+from sqlalchemy import types
 
 
 
@@ -100,9 +101,17 @@ class Feedback(Base):
     content = Column(String(255), nullable=False)
     rating = Column(Integer, nullable=False)
 
-class cart (Base):
+class cart(Base):
     __tablename__ = 'cart'
     id = Column(Integer, primary_key=True) 
     product_id = Column(Integer) 
     quantity = Column(Integer)
 
+
+class News(Base):
+    __tablename__ = 'news'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255), nullable=False)
+    content = Column(String(2000), nullable=False)
+    author = Column(String(50), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
