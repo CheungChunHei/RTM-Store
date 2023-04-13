@@ -1,9 +1,9 @@
-from sqlalchemy import create_engine, Column, Integer, String, select , Float, Text ,ForeignKey, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, select , Float, Text ,ForeignKey, DateTime, types
 from sqlalchemy.orm import declarative_base,relationship, backref
 from sqlalchemy.orm import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from datetime import datetime
 
 
 
@@ -100,9 +100,69 @@ class Feedback(Base):
     content = Column(String(255), nullable=False)
     rating = Column(Integer, nullable=False)
 
-class cart (Base):
+class cart(Base):
     __tablename__ = 'cart'
     id = Column(Integer, primary_key=True) 
     product_id = Column(Integer) 
     quantity = Column(Integer)
 
+class News(Base):
+    __tablename__ = 'news'
+    id = Column(Integer, primary_key=True)
+    title = Column(String(255), nullable=False)
+    content = Column(String(2000), nullable=False)
+    author = Column(String(50), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class Category(Base):
+    __tablename__ = 'categories'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class Review(Base):
+    __tablename__ = 'reviews'
+    id = Column(Integer, primary_key=True)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    rating = Column(Integer, nullable=False)
+    comment = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class Return(Base):
+    __tablename__ = 'returns'
+    id = Column(Integer, primary_key=True)
+    order_id = Column(Integer, ForeignKey('order.id'), nullable=False)
+    reason = Column(String(100), nullable=False)
+    comment = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class Coupon(Base):
+    __tablename__ = 'coupons'
+    id = Column(Integer, primary_key=True)
+    code = Column(String(50), unique=True, nullable=False)
+    discount = Column(Float, nullable=False)
+    expires_at = Column(DateTime, nullable=False)
+
+class Shipping(Base):
+    __tablename__ = 'shippings'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    price = Column(Float, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class Checkout(Base):
+    __tablename__ = 'checkout'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+    quantity = Column(Integer, nullable=False)
+    total_price = Column(Float, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class Favorite(Base):
+    __tablename__ = 'favorites'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)

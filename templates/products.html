@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MTR Store</title>
+    <title>RTM Store</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='product.css') }}">
 </head>
 <body>
        <div class="container">
           <div class="navbar">
               <div class="logo">
-                  <a href={{ url_for('index') }}><img src="https://mtrproject.blob.core.windows.net/$web/MTR_Logo.png" width="125px"></a>
+                  <a href={{ url_for('index') }}><img src="https://mtrproject.blob.core.windows.net/$web/2023-04-13.jpg" width="125px"></a>
               </div>
               <nav>
                <ul id="MenuItems">
@@ -37,7 +37,7 @@
        </select>
    </div>
 
-  <li><a href="{{ url_for('add_product') }}">add_product</a></li>
+  <h3><u><li><a href="{{ url_for('add_product') }}">add_product</a></li></u></h3>
   <table>
     <tbody>
       {% for product in products %}
