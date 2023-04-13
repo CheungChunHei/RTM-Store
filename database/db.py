@@ -123,7 +123,7 @@ class Category(Base):
 class Review(Base):
     __tablename__ = 'reviews'
     id = Column(Integer, primary_key=True)
-    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     rating = Column(Integer, nullable=False)
     comment = Column(Text, nullable=True)
@@ -132,7 +132,7 @@ class Review(Base):
 class Return(Base):
     __tablename__ = 'returns'
     id = Column(Integer, primary_key=True)
-    order_id = Column(Integer, ForeignKey('orders.id'), nullable=False)
+    order_id = Column(Integer, ForeignKey('order.id'), nullable=False)
     reason = Column(String(100), nullable=False)
     comment = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
@@ -152,10 +152,10 @@ class Shipping(Base):
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
 class Checkout(Base):
-    __tablename__ = 'checkouts'
+    __tablename__ = 'checkout'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
     quantity = Column(Integer, nullable=False)
     total_price = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
@@ -164,5 +164,5 @@ class Favorite(Base):
     __tablename__ = 'favorites'
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
