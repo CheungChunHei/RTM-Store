@@ -202,19 +202,16 @@ def update_cart():
 
     return redirect(url_for('cart'))
 
-@app.route('/checkout', methods=['POST'])
+@app.route("/checkout")
 def checkout():
     conn = sqlite3.connect('flask.db')
     c = conn.cursor()
+    c.execute("SELECT cart.id, product.name, product.price, cart.quantity, product.price * cart.quantity FROM cart INNER JOIN product ON cart.product_id = product.id")
+    cart_items = c.fetchall()
     c.execute("SELECT SUM(product.price * cart.quantity) FROM cart INNER JOIN product ON cart.product_id = product.id")
-    total_price = c.fetchone()[0]
-    points = total_price / 2
-    c.execute("INSERT INTO points (user_id, points) VALUES (?, ?)", (session['user_id'], points))
-    c.execute("DELETE FROM cart")
-    conn.commit()
+    total_price = c.fetchone()[0]    
     conn.close()
-    return redirect(url_for('index'))
+    return render_template("checkout.html", cart_items=cart_items, total_price=total_price)
 
 if __name__ == "__main__": 
     app.run(debug=True, host='0.0.0.0', port=5000)
-

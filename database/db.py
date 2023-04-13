@@ -166,3 +166,10 @@ class Favorite(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     product_id = Column(Integer, ForeignKey('product.id'), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+class points(Base):
+    __tablename__ = 'points'
+    id = Column(Integer, primary_key=True)
+    email = Column(Integer, ForeignKey('users.email'), nullable=False)
+    points = Column(Integer, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)

@@ -75,10 +75,8 @@
          </table>
      </div>
      <div class="total-price">
-         <form action="{{ url_for('checkout') }}" method="post"></form>
-            <button type="submit">Proceed to checkout &#8594;</button>
-         </form>
-     </div>
+        <a href={{ url_for('checkout') }}>Proceed to checkout</a>
+    </div>
      
  </div>
         
