@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <title>港鐵網上商店</title>
+        <title>RTM網上商店</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <li><a href={{ url_for('productszh') }}>產品</a></li>
                 <li><a href={{ url_for('accountzh') }}>賬戶</a></li>
                 <li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
-                <li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+                <li><a href={{ url_for('cartzh') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
                </ul>
               </nav>
               <img src="https://mtrproject.blob.core.windows.net/$web/menu.png" onclick="menutoggle()" class="menu-icon">

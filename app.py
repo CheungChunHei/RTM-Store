@@ -72,6 +72,18 @@ def cart():
     conn.close()
     return render_template('cart.html', cart_items=cart_items, total_price=total_price)
 
+@app.route('/cartzh')
+def cartzh():
+    conn = sqlite3.connect('flask.db')
+    c = conn.cursor()
+    c.execute("SELECT cart.id, product.name, product.price, cart.quantity, product.price * cart.quantity FROM cart INNER JOIN product ON cart.product_id = product.id")
+    cart_items = c.fetchall()
+    c.execute("SELECT SUM(product.price * cart.quantity) FROM cart INNER JOIN product ON cart.product_id = product.id")
+    total_price = c.fetchone()[0]
+    conn.close()
+    return render_template('cartzh.html', cart_items=cart_items, total_price=total_price)
+
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
@@ -162,7 +174,6 @@ def add_product():
         c.execute('INSERT INTO product (name, namezh, description, descriptionzh, price, image) VALUES (?, ?, ?, ?, ?, ?)', (name, namezh, description, descriptionzh, price, filename))
         conn.commit()
         conn.close()
-
         return redirect(url_for('products'))
     else:
         return render_template('add_product.html')
@@ -183,8 +194,25 @@ def add_to_cart():
         c.execute("INSERT INTO cart (product_id, quantity) VALUES (?, ?)", (product_id, quantity))
     conn.commit()
     conn.close()
-
     return redirect(url_for('cart'))
+
+@app.route('/add-to-cartzh', methods=['POST'])
+def add_to_cartzh():
+    product_id = request.form['product_id']
+    quantity = int(request.form['quantity'])
+
+    conn = sqlite3.connect('flask.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM cart WHERE product_id = ?", (product_id,))
+    cart_item = c.fetchone()
+    if cart_item:
+        new_quantity = cart_item[2] + quantity
+        c.execute("UPDATE cart SET quantity = ? WHERE id = ?", (new_quantity, cart_item[0]))
+    else:
+        c.execute("INSERT INTO cart (product_id, quantity) VALUES (?, ?)", (product_id, quantity))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('cartzh.html'))
 
 @app.route('/update-cart', methods=['POST'])
 def update_cart():
@@ -199,8 +227,22 @@ def update_cart():
         c.execute("DELETE FROM cart WHERE id = ?", (cart_id,))
     conn.commit()
     conn.close()
-
     return redirect(url_for('cart'))
+
+@app.route('/update-cartzh', methods=['POST'])
+def update_cartzh():
+    cart_id = request.form['cart_id']
+    quantity = int(request.form['quantity'])
+
+    conn = sqlite3.connect('flask.db')
+    c = conn.cursor()
+    if quantity > 0:
+        c.execute("UPDATE cart SET quantity = ? WHERE id = ?", (quantity, cart_id))
+    else:
+        c.execute("DELETE FROM cart WHERE id = ?", (cart_id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('cartzh.html'))
 
 @app.route("/checkout")
 def checkout():
@@ -212,6 +254,17 @@ def checkout():
     total_price = c.fetchone()[0]    
     conn.close()
     return render_template("checkout.html", cart_items=cart_items, total_price=total_price)
+
+@app.route("/checkoutzh")
+def checkoutzh():
+    conn = sqlite3.connect('flask.db')
+    c = conn.cursor()
+    c.execute("SELECT cart.id, product.name, product.price, cart.quantity, product.price * cart.quantity FROM cart INNER JOIN product ON cart.product_id = product.id")
+    cart_items = c.fetchall()
+    c.execute("SELECT SUM(product.price * cart.quantity) FROM cart INNER JOIN product ON cart.product_id = product.id")
+    total_price = c.fetchone()[0]    
+    conn.close()
+    return render_template("checkoutzh.html", cart_items=cart_items, total_price=total_price)
 
 if __name__ == "__main__": 
     app.run(debug=True, host='0.0.0.0', port=5000)

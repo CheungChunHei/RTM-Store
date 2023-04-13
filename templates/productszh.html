@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>港鐵網上商店</title>
+    <title>RTM網上商店</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='product.css') }}">
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <li><a href={{ url_for('productszh') }}>產品</a></li>
                 <li><a href={{ url_for('accountzh') }}>賬戶</a></li>
                 <li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
-                <li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+                <li><a href={{ url_for('cartzh') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
                </ul>
               </nav>
               <img src="https://mtrproject.blob.core.windows.net/$web/menu.png" onclick="menutoggle()" class="menu-icon">
@@ -27,17 +27,17 @@
 <!----------------- title -------------->
 <div class="small-container">
     <div class="row row-2">
-        <h2>All Products</h2>
+        <h2>所有產品</h2>
         <select>
-            <option>Default Shorting</option>
-            <option>Short by price</option>
-            <option>Short by popularity</option>
-            <option>Short by rating</option>
-            <option>Short by sale</option>
+            <option>默認排序</option>
+            <option>按價格</option>
+            <option>按人氣</option>
+            <option>按評級</option>
+            <option>已售空</option>
         </select>
     </div>
  
-   <li><a href="{{ url_for('add_product') }}">add_product</a></li>
+    <h3><u><li><a href="{{ url_for('add_product') }}">加入產品</a></li></u></h3>
    <table>
      <tbody>
        {% for product in products %}
@@ -51,7 +51,7 @@
              <form action="{{ url_for('add_to_cart') }}" method="post">
                  <input type="hidden" name="product_id" value="{{ product[0] }}">
                  <input type="number" name="quantity" value="1" min="1">
-                 <button type="submit">加入購物車</button>
+                 <button type="submit"><a href={{ url_for('cartzh') }}>加入購物車</button></a>
              </form>
          </td>
        </tr>
@@ -79,7 +79,7 @@
                     <li>常見問題</li>
                     <li>送貨服務</li>
                     <li>關於訂單和付款</li>
-                    <li><li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
+                    <li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
                 </ul>
             </div>
             <div class="footer-2">

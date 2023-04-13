@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>RTM Store</title>
+	<title>RTM網上商店</title>
 </head>
 <body>
-	<p>Your order has been successfully placed</p>
+	<p>您的訂單已成功下達</p>
 	<div id="cartItems">
-	<h2>The items you have ordered</h2>
+	<h2>您訂購的商品</h2>
 	<div id="tableItems">
 		{% for cart_item in cart_items %}
 		<div>
@@ -20,11 +20,13 @@
 		</div>
 		<hr id="seperator">
 		<div id="total">
-			<span id="subtotal">Your total order size is</span> : $ {{ total_price }}
+			<span id="subtotal">您的總訂單量是</span> : $ {{ total_price }}
 			<span if="deliverydate"></span>
 		</div>
 		{% endfor %}
-		<div><a href="/">Return to Home Page</div>
+		<div>
+			<a href={{ url_for('indexzh') }}>返回首頁</a>
+			</div>
 	</div>
 </div>
 </body>

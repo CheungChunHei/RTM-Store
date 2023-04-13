@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RTM Store</title>
+    <title>RTM網上商店</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
- 
 </head>
 <body>
     <div class="header">
         <div class="container">
            <div class="navbar">
                <div class="logo">
-                   <a href={{ url_for('index') }}><img src="https://mtrproject.blob.core.windows.net/$web/2023-04-13.jpg" width="125px"></a>
+                   <a href={{ url_for('indexzh') }}><img src="https://mtrproject.blob.core.windows.net/$web/2023-04-13.jpg" width="125px"></a>
                </div>
                <nav>
                 <ul id="MenuItems">
-                    <li><a href={{ url_for('index') }}>Home</a></li>
-                    <li><a href={{ url_for('products') }}>Products</a></li>
-                    <li><a href={{ url_for('account') }}>Account</a></li>
-                    <li><a href={{ url_for('contact') }}>Contact</a></li>
-                    <li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+                    <li><a href={{ url_for('indexzh') }}>首頁</a></li>
+                    <li><a href={{ url_for('productszh') }}>產品</a></li>
+                    <li><a href={{ url_for('accountzh') }}>賬戶</a></li>
+                    <li><a href={{ url_for('contactzh') }}>聯絡我們</a></li>
+                    <li><a href={{ url_for('cartzh') }}><img src="https://mtrproject.blob.core.windows.net/$web/cartzh.png" width="30px"></a></li>
                 </ul>
                </nav>
  
@@ -33,11 +32,11 @@
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Action</th>
+                <th>名稱</th>
+                <th>價錢</th>
+                <th>數量</th>
+                <th>共計</th>
+                <th>行動</th>
             </tr>
         </thead>
         <tbody>
@@ -49,7 +48,7 @@
                     <form action="{{ url_for('update_cart') }}" method="post">
                         <input type="hidden" name="cart_id" value="{{ cart_item[0] }}">
                         <input type="number" name="quantity" value="{{ cart_item[3] }}" min="1">
-                        <button type="submit">Update</button>
+                        <button type="submit">更新</button>
                     </form>
                 </td>
                 <td>{{ cart_item[4] }}</td>
@@ -57,7 +56,7 @@
                     <form action="{{ url_for('update_cart') }}" method="post">
                         <input type="hidden" name="cart_id" value="{{ cart_item[0] }}">
                         <input type="hidden" name="quantity" value="0">
-                        <button type="submit">Remove</button>
+                        <button type="submit">移除</button>
                     </form>
                 </td>
             </tr>
@@ -68,14 +67,14 @@
      <div class="total-price">
          <table>
             <tr>
-                <td colspan="3">Total:</td>
+                <td colspan="3">共計:</td>
                 <td>$ {{ total_price }}</td>
                 <td></td>
             </tr>
          </table>
      </div>
      <div class="total-price">
-        <a href={{ url_for('checkout') }}><button type="submit" class="btn">Proceed to checkout</a></button>
+        <a href={{ url_for('checkoutzh') }}><button type="submit" class="btn">進行結算</a></button>
     </div>
      
  </div>
@@ -86,12 +85,12 @@
      <div class="container">
          <div class="row">
              <div class="footer-1">
-                <h3>Customer Services</h3>
+                <h3>客戶服務</h3>
                  <ul>
-                     <li>FAQs</li>
-                     <li>Delivery Services</li>
-                     <li>About Order and Payment</li>
-                     <li><a href={{ url_for('contact') }}>Contact</a></li>
+                     <li>常見問題</li>
+                     <li>送貨服務</li>
+                     <li>關於訂單和付款</li>
+                     <li><a href={{ url_for('contact') }}>聯絡我們</a></li>
                  </ul>
              </div>
              <div class="footer-2">
