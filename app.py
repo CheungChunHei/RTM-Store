@@ -9,6 +9,7 @@ from database.db import create_db, Product
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = 'secretkey'
@@ -200,6 +201,19 @@ def update_cart():
     conn.close()
 
     return redirect(url_for('cart'))
+
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    conn = sqlite3.connect('flask.db')
+    c = conn.cursor()
+    c.execute("SELECT SUM(product.price * cart.quantity) FROM cart INNER JOIN product ON cart.product_id = product.id")
+    total_price = c.fetchone()[0]
+    points = total_price / 2
+    c.execute("INSERT INTO points (user_id, points) VALUES (?, ?)", (session['user_id'], points))
+    c.execute("DELETE FROM cart")
+    conn.commit()
+    conn.close()
+    return redirect(url_for('index'))
 
 if __name__ == "__main__": 
     app.run(debug=True, host='0.0.0.0', port=5000)
