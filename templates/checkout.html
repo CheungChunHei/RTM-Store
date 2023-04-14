@@ -1,31 +1,92 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-	<title>RTM Store</title>
-</head>
-<body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>RTM Store</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+	<body>
+		<div class="header">
+			<div class="container">
+			   <div class="navbar">
+				   <div class="logo">
+					   <a href={{ url_for('index') }}><img src="https://mtrproject.blob.core.windows.net/$web/2023-04-13.jpg" width="125px"></a>
+				   </div>
+				   <nav>
+					<ul id="MenuItems">
+						<li><a href={{ url_for('index') }}>Home</a></li>
+						<li><a href={{ url_for('products') }}>Products</a></li>
+						<li><a href={{ url_for('account') }}>Account</a></li>
+						<li><a href={{ url_for('contact') }}>Contact</a></li>
+						<li><a href={{ url_for('cart') }}><img src="https://mtrproject.blob.core.windows.net/$web/cart.png" width="30px"></a></li>
+					</ul>
+				   </nav>
+	 
+				   <img src="https://mtrproject.blob.core.windows.net/$web/menu.png" onclick="menutoggle()" class="menu-icon"   >
+			   </div>
+			</div>
+		</div>
+<!-- End of header -->
+<div class="container">
 	<p>Your order has been successfully placed</p>
 	<div id="cartItems">
 	<h2>The items you have ordered</h2>
 	<div id="tableItems">
-		{% for cart_item in cart_items %}
-		<div>
-			<hr id="seperator">
-			<div id="itemName">
-				<span id="itemNameTag">{{ cart_item[1] }}</span><br>
-			</div>
-			<div id="itemPrice">
-				$ {{ total_price }}
-			</div>
-		</div>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for cart_item in cart_items %}
+				<tr>
+				<td>{{ cart_item[1] }}</td>
+				<td>$ {{ cart_item[2] }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		
 		<hr id="seperator">
 		<div id="total">
 			<span id="subtotal">Your total order size is</span> : $ {{ total_price }}
 			<span if="deliverydate"></span>
 		</div>
-		{% endfor %}
-		<div><a href="/">Return to Home Page</div>
+		<div><a href="/">Return to Home Page</a></div>
 	</div>
 </div>
+</div>
+ <!----------Footer---------------> 
+ 
+ <div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="footer-1">
+			   <h3>Customer Services</h3>
+				<ul>
+					<li>FAQs</li>
+					<li>Delivery Services</li>
+					<li>About Order and Payment</li>
+					<li><a href={{ url_for('contact') }}>Contact</a></li>
+				</ul>
+			</div>
+			<div class="footer-2">
+			   <h3>Language</h3>
+				<ul>
+					<li><a href={{ url_for('checkout') }}>English</a></li>
+					<li><a href={{ url_for('checkoutzh') }}>中文</a></li>
+					<li>.</li>
+					<li>.</li>
+				</ul>
+			</div>
+		</div>
+	</div>  
+</div>
+
 </body>
 </html>

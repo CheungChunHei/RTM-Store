@@ -26,18 +26,7 @@
        </div>
 <!----------------- title -------------->
 <div class="small-container">
-    <div class="row row-2">
-        <h2>所有產品</h2>
-        <select>
-            <option>默認排序</option>
-            <option>按價格</option>
-            <option>按人氣</option>
-            <option>按評級</option>
-            <option>已售空</option>
-        </select>
-    </div>
- 
-    <h3><u><li><a href="{{ url_for('add_product') }}">加入產品</a></li></u></h3>
+   <h3><u><li><a href="{{ url_for('add_product') }}">加入產品</a></li></u></h3>
    <table>
      <tbody>
        {% for product in products %}
@@ -48,10 +37,10 @@
          <td>{{ product[4] }}</td>
          <td>$ {{ product[5] }}</td>
          <td>
-             <form action="{{ url_for('add_to_cart') }}" method="post">
+             <form action="{{ url_for('add_to_cartzh') }}" method="post">
                  <input type="hidden" name="product_id" value="{{ product[0] }}">
                  <input type="number" name="quantity" value="1" min="1">
-                 <button type="submit"><a href={{ url_for('cartzh') }}>加入購物車</button></a>
+                 <button type="submit">加入購物車</button></a>
              </form>
          </td>
        </tr>
