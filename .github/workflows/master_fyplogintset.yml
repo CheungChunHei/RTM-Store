@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'fyplogintset'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED70EA5F0D684127905018F10CEB6789 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2EA1E403C9A6475999BF8AD3B0BBBF96 }}
